@@ -1,5 +1,5 @@
 # Builds and Pushes Docker images for `latest` and semantic versioned tags or "releases".
-# Runs on pushes to master for `latest`, and semantic versioned tags for "releases"
+# Runs on pushes to main for `latest`, and semantic versioned tags for "releases"
 name: Docker Build and Push
 
 on:
@@ -37,7 +37,7 @@ jobs:
           # Strip "v" prefix from tag name if exists
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
           # Use Docker `latest` convention
-          [ "$VERSION" == "master" ] && VERSION=latest
+          [ "$VERSION" == "main" ] && VERSION=latest
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
